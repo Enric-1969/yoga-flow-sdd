@@ -3,6 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Cabecera HTTP de Seguridad contra ataques XSS e inyecciones externas -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com;">
+  
   <title>Yoga Flow — Reservas y Avisos</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
