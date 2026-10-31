@@ -1,17 +1,26 @@
-# Especificación del Feature (Tarea 3): Avisos Urgentes y Notificaciones de Espera
+# Especificación de Característica (SPEC) — Tarea 3: Avisos Urgentes y Lista de Espera Dinámica
 
-## 1. Definición del Problema
-Las alumnas en lista de espera no se enteran a tiempo cuando un cupo se libera por una cancelación de última hora. Asimismo, la instructora Andrea no tiene una forma directa de publicar avisos urgentes (ej. cambio de aula o cancelación por fuerza mayor).
+## 1. Visión General
+Esta especificación define el comportamiento del **Banner de Avisos Urgentes del Día** y la **Promoción Automática en Lista de Espera** para garantizar la continuidad operativa del estudio *Yoga Flow* y mantener informadas a las alumnas en tiempo real[cite: 6].
 
-## 2. Diseño de la Solución
-Un componente destacado en la parte superior de la aplicación que muestra avisos del día de alta prioridad y una alerta visual e interactiva cuando la lista de espera se activa para la usuaria.
+---
 
-## 3. Criterios de Aceptación Verificables
-1. **Banner de Aviso Urgente:** Si la instructora publica una alerta, se muestra un banner superior en verde salvia con la etiqueta `[Aviso del día]`.
-2. **Promoción Visual de Lista de Espera:** Cuando una plaza se libera, el primer usuario en lista de espera ve cambiar su tarjeta de clase al estado `¡Cupo disponible para ti!` durante un contador de tiempo determinado.
-3. **Persistencia de Estado Local:** El estado de las reservas y cancelaciones se actualiza dinámicamente en el frontend sin recargar la página.
-4. **Resistencia a Errores de Conexión:** Si la red cae o es lenta, la interfaz muestra un mensaje de "Modo fuera de línea - Intentando reconectar..." sin bloquear la pantalla ni perder los datos introducidos.
+## 2. Criterios de Aceptación (Acceptance Criteria)
 
-## 4. Métricas de Éxito
-- **Tasa de Ocupación:** Incrementar en un 25% la conversión de puestos liberados en lista de espera.
-- **Tiempo de Respuesta:** Reducir a menos de 2 segundos la confirmación visual de reserva/cancelación en dispositivos móviles.
+### A. Banner de Avisos Urgentes
+1. **Visibilidad:** El banner debe permanecer visible en la parte superior de la interfaz de usuario (`ui/index.html`) cuando exista un aviso activo publicado por la administración/instructora[cite: 2, 6].
+2. **Formato:** Debe mostrar claramente el texto del mensaje (ej. *"Las clases de hoy serán en la sala B"*) y la hora de emisión[cite: 2].
+3. **Estilo:** Seguir las directrices de la guía de marca (`salvia`, tipografía legible y contraste accesible)[cite: 2, 6].
+
+### B. Lista de Espera y Sanitización
+1. **Sin Sobreventas:** Cuando una clase alcanza la capacidad máxima (15 alumnas), las nuevas solicitudes de reserva se asignan automáticamente a la `waitlist` en orden de llegada[cite: 6].
+2. **Promoción Automática:** Si una usuaria cancela su reserva activa, la primera persona en la `waitlist` se promociona automáticamente a plaza confirmada.
+3. **Seguridad (Zero Trust):** Todos los IDs e insumos de texto deben sanitizarse en la entidad del dominio (`YogaClass.sanitizeInput`) para prevenir inyecciones de código (XSS) antes de modificar el estado[cite: 6].
+
+---
+
+## 3. Métricas de Éxito (Success Metrics)
+
+1. **Reducción del Churn de Reservas:** Asignación del 100% de las plazas liberadas a la lista de espera de forma instantánea sin intervención manual.
+2. **Tasa de Incidencias Cero por XSS:** 0% de ejecuciones de scripts no autorizados gracias a la combinación de sanitización en dominio y cabeceras CSP (`Content-Security-Policy`) en la capa visual[cite: 6].
+3. **Efectividad Informativa:** Disminución de dudas en recepción sobre cambios de sala o avisos de última hora.
