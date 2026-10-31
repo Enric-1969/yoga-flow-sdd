@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yoga Flow — Reservas y Avisos</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            salvia: '#8A9A86',
+            salviaDark: '#6E7E6A',
+            salviaLight: '#F2F5F2'
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-salviaLight text-slate-800 font-sans min-h-screen flex justify-center">
+  <main class="w-full max-w-md p-4 space-y-4">
+    
+    <!-- Header de Marca -->
+    <header class="text-center py-4 border-b border-salvia/30">
+      <h1 class="text-2xl font-light tracking-wide text-salviaDark">YOGA FLOW</h1>
+      <p class="text-xs text-slate-500 uppercase tracking-widest mt-1">Estudio de Bienestar</p>
+    </header>
+
+    <!-- Banner de Aviso Urgente (Tarea 3) -->
+    <div id="notice-banner" class="hidden bg-salvia text-white p-3 rounded-lg text-sm flex items-center justify-between shadow-sm">
+      <div>
+        <span class="font-bold uppercase text-xs tracking-wider block opacity-90">[Aviso del Día]</span>
+        <span id="notice-text">Las clases de hoy serán en la sala B.</span>
+      </div>
+      <span class="text-xs opacity-75" id="notice-time">18:00</span>
+    </div>
+
+    <!-- Perfil del Usuario / Contexto Persona -->
+    <div class="bg-white p-3 rounded-lg shadow-sm border border-slate-100 flex items-center justify-between">
+      <div class="text-sm">
+        <span class="text-slate-400 text-xs block">Usuaria activa:</span>
+        <strong class="text-slate-700">Lucía Gómez</strong>
+      </div>
+      <span class="bg-salviaLight text-salviaDark text-xs px-2.5 py-1 rounded-full font-medium">Socia Premium</span>
+    </div>
+
+    <!-- Lista de Clases Vespertinas -->
+    <section>
+      <h2 class="text-sm font-semibold text-slate-600 mb-3 uppercase tracking-wider">Clases Vespertinas Disponibles</h2>
+      <div id="classes-container" class="space-y-3">
+        <!-- Generado dinámicamente -->
+      </div>
+    </section>
+
+    <!-- Footer descriptivo -->
+    <footer class="text-center text-xs text-slate-400 py-6">
+      Yoga Flow SDD Architecture • Clean Code
+    </footer>
+  </main>
+</body>
+</html>
